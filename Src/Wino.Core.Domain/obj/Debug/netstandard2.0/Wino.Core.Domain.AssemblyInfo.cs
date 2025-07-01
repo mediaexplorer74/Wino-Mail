@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wino.Core.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4050f809b865b1eef8afc00b036a110da93e73a1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b261c56f89b71b81adc38093ee2040d1a6181874")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wino.Core.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wino.Core.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

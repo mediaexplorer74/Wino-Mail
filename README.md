@@ -15,7 +15,7 @@ My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/W
 
 
 ## Progress / Status
-- Tested Outlook & GMail accaunts adding feature (GMail - ok, Outlook is ok too after 2-factor auth switching off)
+- Tested Outlook & GMail accounts adding feature (GMail - ok, Outlook is ok too after 2-factor auth switching off)
 - Work-in-progress (Experimenting with .NET 2 & UAP 17763-> 16299 downgrade)
 - Reducing cout of downloaded (fetched) "mail items" (total count/quantity "approx. 1000" reduced to approx. 100)
 
