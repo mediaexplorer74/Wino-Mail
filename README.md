@@ -20,10 +20,10 @@ My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/W
 - Reducing cout of downloaded (fetched) "mail items" (total count/quantity "approx. 1000" reduced to approx. 100)
 
 ## Problems
-- Adding Outlook account failed  
+- Adding Outlook account failed sometimes (when 2-factor auth enabled at Microsoft Account/Profile security) 
 
 ## TODO
-- Explore more things about Microsoft Graph "framwork" / api
+- Explore more things about Microsoft Graph "framework" / api
 - UWP modules/libs 17763-> 16299 downgrade for possible W10M experimentation... =)
 
 ## References
