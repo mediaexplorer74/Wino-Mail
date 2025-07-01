@@ -1,4 +1,4 @@
-# Wino-Mail - retro branch 
+# Wino-Mail v1.7.1-alpha - retro branch 
 ![](Images/logo.png)
 
 My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/Wino-Mail) uwp app (v1.7.1).
@@ -11,18 +11,20 @@ My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/W
 ![](Images/sshot05.png)
 ![](Images/sshot06.png)
 ![](Images/sshot07.png)
+![](Images/sshot08.png)
 
 
 ## Progress / Status
-- Tested Outlook & GMail accaunts adding feature (Outlook - failed, GMail - ok...)
-- Work-in-progress (Experimenting with .NET 2 & UAP 17763)
+- Tested Outlook & GMail accaunts adding feature (GMail - ok, Outlook is ok too after 2-factor auth switching off)
+- Work-in-progress (Experimenting with .NET 2 & UAP 17763-> 16299 downgrade)
+- Reducing cout of downloaded (fetched) "mail items" (total count/quantity "approx. 1000" reduced to approx. 100)
 
 ## Problems
 - Adding Outlook account failed  
 
 ## TODO
 - Explore more things about Microsoft Graph "framwork" / api
-- Try to fix Outlook accaunt adding & normal email getting...
+- UWP modules/libs 17763-> 16299 downgrade for possible W10M experimentation... =)
 
 ## References
  - Repo URL (original project): https://github.com/bkaankose/Wino-Mail
@@ -35,5 +37,4 @@ AS IS. No support. RnD only. DIY.
 ## .
 - [M][E] July, 1 2025
 
-![](Images/footer.png)
 
