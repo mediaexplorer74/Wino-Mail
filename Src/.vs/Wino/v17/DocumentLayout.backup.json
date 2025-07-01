@@ -1,0 +1,224 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\mime\\htmlpreviewvisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\mime\\htmlpreviewvisitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\synchronizers\\gmailsynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\synchronizers\\gmailsynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\synchronizers\\outlooksynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\synchronizers\\outlooksynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\synchronizers\\imapsynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\synchronizers\\imapsynchronizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\integration\\basemailintegrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\integration\\basemailintegrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\integration\\processors\\defaultchangeprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\integration\\processors\\defaultchangeprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\services\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\services\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\authenticators\\outlookauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\authenticators\\outlookauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\authenticators\\office365authenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\authenticators\\office365authenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\authenticators\\gmailauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\authenticators\\gmailauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\authenticators\\yahooauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\authenticators\\yahooauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|c:\\users\\admin\\source\\repos\\!allinone\\wino-mail-1.7.1\\src\\wino.core\\authenticators\\customauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6B1632A-8901-41E8-9DDF-6793C7698B0B}|Wino.Core\\Wino.Core.csproj|solutionrelative:wino.core\\authenticators\\customauthenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HtmlPreviewVisitor.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Mime\\HtmlPreviewVisitor.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Mime\\HtmlPreviewVisitor.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Mime\\HtmlPreviewVisitor.cs",
+              "RelativeToolTip": "Wino.Core\\Mime\\HtmlPreviewVisitor.cs",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAuwLIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T11:36:15.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ImapSynchronizer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Synchronizers\\ImapSynchronizer.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Synchronizers\\ImapSynchronizer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Synchronizers\\ImapSynchronizer.cs",
+              "RelativeToolTip": "Wino.Core\\Synchronizers\\ImapSynchronizer.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAqwDwAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T11:11:44.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BaseMailIntegrator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Integration\\BaseMailIntegrator.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Integration\\BaseMailIntegrator.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Integration\\BaseMailIntegrator.cs",
+              "RelativeToolTip": "Wino.Core\\Integration\\BaseMailIntegrator.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAiwHEAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T11:11:33.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OutlookSynchronizer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Synchronizers\\OutlookSynchronizer.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Synchronizers\\OutlookSynchronizer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Synchronizers\\OutlookSynchronizer.cs",
+              "RelativeToolTip": "Wino.Core\\Synchronizers\\OutlookSynchronizer.cs",
+              "ViewState": "AgIAAAICAAAAAAAAAAAYwAgCAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:51:15.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GmailSynchronizer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Synchronizers\\GmailSynchronizer.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Synchronizers\\GmailSynchronizer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Synchronizers\\GmailSynchronizer.cs",
+              "RelativeToolTip": "Wino.Core\\Synchronizers\\GmailSynchronizer.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAxwHsBAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:48:18.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DefaultChangeProcessor.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Integration\\Processors\\DefaultChangeProcessor.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Integration\\Processors\\DefaultChangeProcessor.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Integration\\Processors\\DefaultChangeProcessor.cs",
+              "RelativeToolTip": "Wino.Core\\Integration\\Processors\\DefaultChangeProcessor.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAIwEgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:48:15.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MailService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Services\\MailService.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Services\\MailService.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Services\\MailService.cs",
+              "RelativeToolTip": "Wino.Core\\Services\\MailService.cs",
+              "ViewState": "AgIAACECAAAAAAAAAAAuwDoCAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:42:51.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OutlookAuthenticator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\OutlookAuthenticator.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Authenticators\\OutlookAuthenticator.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\OutlookAuthenticator.cs",
+              "RelativeToolTip": "Wino.Core\\Authenticators\\OutlookAuthenticator.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAswBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:17:11.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Office365Authenticator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\Office365Authenticator.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Authenticators\\Office365Authenticator.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\Office365Authenticator.cs",
+              "RelativeToolTip": "Wino.Core\\Authenticators\\Office365Authenticator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:17:10.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CustomAuthenticator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\CustomAuthenticator.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Authenticators\\CustomAuthenticator.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\CustomAuthenticator.cs",
+              "RelativeToolTip": "Wino.Core\\Authenticators\\CustomAuthenticator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:16:30.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "YahooAuthenticator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\YahooAuthenticator.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Authenticators\\YahooAuthenticator.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\YahooAuthenticator.cs",
+              "RelativeToolTip": "Wino.Core\\Authenticators\\YahooAuthenticator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:16:26.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GmailAuthenticator.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\GmailAuthenticator.cs",
+              "RelativeDocumentMoniker": "Wino.Core\\Authenticators\\GmailAuthenticator.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\!AllInOne\\Wino-Mail-1.7.1\\Src\\Wino.Core\\Authenticators\\GmailAuthenticator.cs",
+              "RelativeToolTip": "Wino.Core\\Authenticators\\GmailAuthenticator.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwCIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T10:16:23.853Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
