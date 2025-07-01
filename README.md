@@ -1,13 +1,7 @@
-# Wino-Mail v1.7.1-alpha - main branch 
+# Wino-Mail v1.7.2-alpha - main branch 
 ![](Images/logo.png)
 
-My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/Wino-Mail) uwp app (v1.7.1).
-
-## Screenshot(s)
-![](Images/sshot01.png)
-![](Images/sshot02.png)
-![](Images/sshot03.png)
-![](Images/sshot04.png)
+My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/Wino-Mail) uwp app (v1.7.2).
 
 
 ## Progress / Status
@@ -20,7 +14,7 @@ My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/W
 
 ## TODO
 - Explore more things about Microsoft Graph "framework" / api
-- UWP modules/libs 17763-> 16299 downgrade for possible W10M experimentation... =)
+- Try to organise Win SDK 16299 "project compatibility" 
 
 ## References
  - Repo URL (original project): https://github.com/bkaankose/Wino-Mail
