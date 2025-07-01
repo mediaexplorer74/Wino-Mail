@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp;//.Helpers;
 using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.UI;
@@ -226,7 +226,7 @@ namespace Wino.Services
             // Change accent color if specified.
             if (!string.IsNullOrEmpty(hex))
             {
-                var brush = new SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(hex));
+                var brush = new SolidColorBrush(/*Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(hex)*/ hex.ToColor());
 
                 if (_applicationResourceManager.ContainsResourceKey("SystemAccentColor"))
                     _applicationResourceManager.ReplaceResource("SystemAccentColor", brush);
@@ -442,5 +442,45 @@ namespace Wino.Services
 
         public string GetSystemAccentColorHex()
             => uiSettings.GetColorValue(UIColorType.Accent).ToHex();
+    }
+    public static class ColorExtensions
+    {
+        /// <summary>
+        /// Converts a hex color string to a Windows.UI.Color object.
+        /// </summary>
+        /// <param name="hex">The hex color string (e.g., "#RRGGBB" or "#AARRGGBB").</param>
+        /// <returns>A Color object representing the hex color.</returns>
+        public static Color ToColor(this string hex)
+        {
+            if (string.IsNullOrWhiteSpace(hex))
+                throw new ArgumentException("Hex color string cannot be null or empty.", nameof(hex));
+
+            hex = hex.Replace("#", string.Empty);
+
+            if (hex.Length == 6)
+            {
+                hex = "FF" + hex; // Add alpha value if not provided.
+            }
+
+            if (hex.Length != 8)
+                throw new ArgumentException("Hex color string must be 6 or 8 characters long.", nameof(hex));
+
+            byte a = Convert.ToByte(hex.Substring(0, 2), 16);
+            byte r = Convert.ToByte(hex.Substring(2, 2), 16);
+            byte g = Convert.ToByte(hex.Substring(4, 2), 16);
+            byte b = Convert.ToByte(hex.Substring(6, 2), 16);
+
+            return Color.FromArgb(a, r, g, b);
+        }
+
+        /// <summary>
+        /// Converts a Windows.UI.Color object to a hex color string.
+        /// </summary>
+        /// <param name="color">The Color object.</param>
+        /// <returns>A hex color string (e.g., "#RRGGBB" or "#AARRGGBB").</returns>
+        public static string ToHex(this Color color)
+        {
+            return $"#{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
+        }
     }
 }

@@ -44,7 +44,8 @@ namespace Wino.Core.UWP.Services
 
                 builder.AddButton(GetDismissButton());
 
-                builder.Show();
+                //TODO
+                //builder.Show();
             }
             else
             {
@@ -84,14 +85,16 @@ namespace Wino.Core.UWP.Services
                     builder.AddText(mailItem.Subject);
                     builder.AddText(mailItem.PreviewText);
 
-                    builder.AddArgument(Constants.ToastMailItemIdKey, mailItem.UniqueId.ToString());
-                    builder.AddArgument(Constants.ToastActionKey, MailOperation.Navigate);
+                    //TODO
+                    //builder.AddArgument(Constants.ToastMailItemIdKey, mailItem.UniqueId.ToString());
+                    //builder.AddArgument(Constants.ToastActionKey, MailOperation.Navigate);
 
                     builder.AddButton(GetMarkedAsRead(mailItem.Id));
                     builder.AddButton(GetDeleteButton(mailItem.Id));
                     builder.AddButton(GetDismissButton());
 
-                    builder.Show();
+                    //TODO
+                    //builder.Show();
                 }
 
                 await UpdateTaskbarIconBadgeAsync();
@@ -99,25 +102,31 @@ namespace Wino.Core.UWP.Services
         }
 
         private ToastButton GetDismissButton()
-            => new ToastButton()
-            .SetDismissActivation()
-            .SetImageUri(new Uri("ms-appx:///Assets/NotificationIcons/dismiss.png"));
+        {
+            return default;//new ToastButton()
+                   // .SetDismissActivation()
+                   // .SetImageUri(new Uri("ms-appx:///Assets/NotificationIcons/dismiss.png"));
+        }
 
         private ToastButton GetDeleteButton(string mailCopyId)
-            => new ToastButton()
-            .SetContent(Translator.MailOperation_Delete)
-            .SetImageUri(new Uri("ms-appx:///Assets/NotificationIcons/delete.png"))
-            .AddArgument(Constants.ToastMailItemIdKey, mailCopyId)
-            .AddArgument(Constants.ToastActionKey, MailOperation.SoftDelete)
-            .SetBackgroundActivation();
+        {
+            return default;//new ToastButton()
+                    //.SetContent(Translator.MailOperation_Delete)
+                    //.SetImageUri(new Uri("ms-appx:///Assets/NotificationIcons/delete.png"))
+                    //.AddArgument(Constants.ToastMailItemIdKey, mailCopyId)
+                    //.AddArgument(Constants.ToastActionKey, MailOperation.SoftDelete)
+                    //.SetBackgroundActivation();
+        }
 
         private ToastButton GetMarkedAsRead(string mailCopyId)
-            => new ToastButton()
-            .SetContent(Translator.MailOperation_MarkAsRead)
-            .SetImageUri(new System.Uri("ms-appx:///Assets/NotificationIcons/markread.png"))
-            .AddArgument(Constants.ToastMailItemIdKey, mailCopyId)
-            .AddArgument(Constants.ToastActionKey, MailOperation.MarkAsRead)
-            .SetBackgroundActivation();
+        {
+            return default;//new ToastButton()
+                    //.SetContent(Translator.MailOperation_MarkAsRead)
+                    //.SetImageUri(new System.Uri("ms-appx:///Assets/NotificationIcons/markread.png"))
+                    //.AddArgument(Constants.ToastMailItemIdKey, mailCopyId)
+                    //.AddArgument(Constants.ToastActionKey, MailOperation.MarkAsRead)
+                    //.SetBackgroundActivation();
+        }
 
         public async Task UpdateTaskbarIconBadgeAsync()
         {

@@ -13,6 +13,9 @@ namespace Wino.Core.MenuItems
 
         public IEnumerable<MailAccount> HoldingAccounts => GetAccountMenuItems()?.SelectMany(a => a.HoldingAccounts);
 
+        public double SynchronizationProgress { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public int UnreadItemCount { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
         [ObservableProperty]
         private int unreadItemCount;
 
@@ -21,6 +24,7 @@ namespace Wino.Core.MenuItems
 
         [ObservableProperty]
         private string mergedAccountName;
+        private string MergedAccountName;
 
         public MergedAccountMenuItem(MergedInbox mergedInbox, IMenuItem parent) : base(mergedInbox, mergedInbox.Id, parent)
         {

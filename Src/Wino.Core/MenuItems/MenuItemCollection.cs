@@ -12,7 +12,7 @@ namespace Wino.Core.MenuItems
         {
             var rootItems = this.OfType<AccountMenuItem>()
                     .SelectMany(a => a.FlattenedFolderHierarchy)
-                    .Where(a => a.Parameter?.Id == folderId)
+                    //.Where(a => a.Parameter?.Id == folderId)
                     .Cast<IBaseFolderMenuItem>();
 
             // Accounts that are merged can't exist in the root items.
@@ -22,7 +22,8 @@ namespace Wino.Core.MenuItems
 
             var mergedItems = this.OfType<MergedAccountMenuItem>()
                 .SelectMany(a => a.SubMenuItems.OfType<MergedAccountFolderMenuItem>()
-                .Where(a => a.Parameter.Any(b => b.Id == folderId)))
+                //.Where(a => a.Parameter.Any(b => b.Id == folderId))
+                )
                 .Cast<IBaseFolderMenuItem>();
 
             // Folder is found in the MergedInbox shared folders.
@@ -31,8 +32,9 @@ namespace Wino.Core.MenuItems
             // Folder is not in any of the above. Looks inside the individual accounts in merged inbox account menu item.
             var mergedAccountItems = this.OfType<MergedAccountMenuItem>()
                 .SelectMany(a => a.SubMenuItems.OfType<AccountMenuItem>()
-                               .SelectMany(a => a.FlattenedFolderHierarchy)
-                                              .Where(a => a.Parameter?.Id == folderId))
+                    .SelectMany(a => a.FlattenedFolderHierarchy)
+                     // .Where(a => a.Parameter?.Id == folderId)
+                )
                 .Cast<IBaseFolderMenuItem>();
 
             return mergedAccountItems;
@@ -62,10 +64,10 @@ namespace Wino.Core.MenuItems
         // Pattern: Look for root account menu item only and return the folder menu item inside the account menu item that has specific special folder type.
         public bool TryGetRootSpecialFolderMenuItem(Guid accountId, SpecialFolderType specialFolderType, out FolderMenuItem value)
         {
-            value = this.OfType<AccountMenuItem>()
+            value = (FolderMenuItem)this.OfType<AccountMenuItem>()
                     .Where(a => a.HoldingAccounts.Any(b => b.Id == accountId))
-                    .SelectMany(a => a.FlattenedFolderHierarchy)
-                    .FirstOrDefault(a => a.Parameter?.SpecialFolderType == specialFolderType);
+                    .SelectMany(a => a.FlattenedFolderHierarchy);
+                    //.FirstOrDefault(a => a.Parameter?.SpecialFolderType == specialFolderType);
 
             return value != null;
         }
@@ -101,7 +103,7 @@ namespace Wino.Core.MenuItems
                     .FirstOrDefault(a => a.HoldingAccounts.Any(b => b.Id == accountId))
                     ?.FlattenedFolderHierarchy
                     .OfType<FolderMenuItem>()
-                    .FirstOrDefault(a => a.Parameter?.SpecialFolderType == specialFolderType);
+                    .FirstOrDefault(a => a.Parameter != null /*&& a.Parameter.SpecialFolderType == specialFolderType*/);
 
             return value != null;
         }

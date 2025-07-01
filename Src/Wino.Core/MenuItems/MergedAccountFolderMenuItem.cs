@@ -22,7 +22,7 @@ namespace Wino.Core.MenuItems
         // Any of the folders is enough to determine the synchronization enable/disable state.
         public bool IsSynchronizationEnabled => HandlingFolders.Any(a => a.IsSynchronizationEnabled);
         public bool IsMoveTarget => HandlingFolders.All(a => a.IsMoveTarget);
-        public IEnumerable<IMailItemFolder> HandlingFolders => Parameter;
+        public IEnumerable<IMailItemFolder> HandlingFolders => /*Parameter*/default;
 
         // All folders in the list should have the same type.
         public SpecialFolderType SpecialFolderType => HandlingFolders.First().SpecialFolderType;
@@ -36,6 +36,8 @@ namespace Wino.Core.MenuItems
         public MergedInbox MergedInbox { get; set; }
 
         public bool ShowUnreadCount => HandlingFolders?.Any(a => a.ShowUnreadCount) ?? false;
+
+        public int UnreadItemCount { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         [ObservableProperty]
         private int unreadItemCount;
@@ -95,11 +97,11 @@ namespace Wino.Core.MenuItems
 
         public void UpdateFolder(IMailItemFolder folder)
         {
-            var existingFolder = Parameter.FirstOrDefault(a => a.Id == folder.Id);
+            var existingFolder = Parameter.FirstOrDefault(a => ((IMailItemFolder)a).Id == folder.Id);
 
             if (existingFolder == null) return;
 
-            Parameter.Remove(existingFolder);
+            Parameter.Remove((IMailItemFolder)existingFolder);
             Parameter.Add(folder);
 
             SetFolderName();

@@ -22,6 +22,9 @@ namespace Wino.Mail.ViewModels
 
         [ObservableProperty]
         private string mergedAccountName;
+        private string MergedAccountName;
+        private MergedAccount EditingMergedAccount;
+        private Command UnlinkAccountsCommand;
 
         public ObservableCollection<AccountProviderDetailViewModel> LinkedAccounts { get; set; } = [];
         public ObservableCollection<AccountProviderDetailViewModel> UnlinkedAccounts { get; set; } = [];
@@ -92,7 +95,8 @@ namespace Wino.Mail.ViewModels
                 }
                 else
                 {
-                    await _accountService.CreateMergeAccountsAsync(EditingMergedAccount.MergedInbox, LinkedAccounts.Select(a => a.Account).ToList());
+                    await _accountService.CreateMergeAccountsAsync(EditingMergedAccount.MergedInbox, 
+                        (System.Collections.Generic.IEnumerable<Core.Domain.Entities.MailAccount>)LinkedAccounts.Select(a => a.Account).ToList());
                 }
 
                 // Startup entity is linked now. Change the startup entity.
@@ -151,7 +155,7 @@ namespace Wino.Mail.ViewModels
             if (EditingMergedAccount == null) return false;
 
             return EditingMergedAccount.HoldingAccounts.Count != LinkedAccounts.Count ||
-                   EditingMergedAccount.HoldingAccounts.Any(a => !LinkedAccounts.Any(la => la.Account.Id == a.Account.Id));
+                   EditingMergedAccount.HoldingAccounts.Any(a => !LinkedAccounts.Any(la => la.Account.Id == a.account.Id));
         }
 
         public override void OnNavigatedFrom(NavigationMode mode, object parameters)
@@ -164,7 +168,8 @@ namespace Wino.Mail.ViewModels
         private void LinkedAccountsUpdated(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged(nameof(ShouldDeleteMergedAccount));
-            SaveChangesCommand.NotifyCanExecuteChanged();
+            //TODO
+            //SaveChangesCommand.NotifyCanExecuteChanged();
 
             // TODO: Preview common folders for all linked accounts.
             // Basically showing a preview of how menu items will look.
@@ -180,7 +185,7 @@ namespace Wino.Mail.ViewModels
             if (parameters is MergedAccountProviderDetailViewModel editingMergedAccount)
             {
                 MergedAccountName = editingMergedAccount.MergedInbox.Name;
-                EditingMergedAccount = editingMergedAccount;
+                EditingMergedAccount = default;//editingMergedAccount;
 
                 foreach (var account in editingMergedAccount.HoldingAccounts)
                 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Wino.Core.Domain;
@@ -13,6 +14,8 @@ namespace Wino.Core.MenuItems
     {
         [ObservableProperty]
         private int unreadItemCount;
+        internal int UnreadItemCount;
+        internal Parameter Parameter;
 
         public bool HasTextColor => !string.IsNullOrEmpty(Parameter.TextColorHex);
         public bool IsMoveTarget => HandlingFolders.All(a => a.IsMoveTarget);
@@ -35,22 +38,24 @@ namespace Wino.Core.MenuItems
                 else
                     return Parameter.FolderName;
             }
-            set => SetProperty(Parameter.FolderName, value, Parameter, (u, n) => u.FolderName = n);
+            set => SetProperty(Parameter.FolderName, value, /*Parameter*/default, /*(u, n) => u.FolderName = n*/default);
         }
 
         public bool IsSynchronizationEnabled
         {
             get => Parameter.IsSynchronizationEnabled;
-            set => SetProperty(Parameter.IsSynchronizationEnabled, value, Parameter, (u, n) => u.IsSynchronizationEnabled = n);
+            set => SetProperty(Parameter.IsSynchronizationEnabled, value, /*Parameter*/default, /*(u, n) => u.IsSynchronizationEnabled = n*/default);
         }
 
-        public IEnumerable<IMailItemFolder> HandlingFolders => new List<IMailItemFolder>() { Parameter };
+        public IEnumerable<IMailItemFolder> HandlingFolders => new List<IMailItemFolder>() { /*Parameter*/default };
 
         public MailAccount ParentAccount { get; }
 
         public string AssignedAccountName => ParentAccount?.Name;
 
         public bool ShowUnreadCount => Parameter.ShowUnreadCount;
+
+        int IBaseFolderMenuItem.UnreadItemCount { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public FolderMenuItem(IMailItemFolder folderStructure, MailAccount parentAccount, IMenuItem parentMenuItem) : base(folderStructure, folderStructure.Id, parentMenuItem)
         {
@@ -59,7 +64,7 @@ namespace Wino.Core.MenuItems
 
         public void UpdateFolder(IMailItemFolder folder)
         {
-            Parameter = folder;
+            //Parameter = folder;
 
             OnPropertyChanged(nameof(IsSynchronizationEnabled));
             OnPropertyChanged(nameof(ShowUnreadCount));

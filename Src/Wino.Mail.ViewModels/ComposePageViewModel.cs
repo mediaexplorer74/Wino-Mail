@@ -46,7 +46,7 @@ namespace Wino.Mail.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsLocalDraft))]
-        [NotifyPropertyChangedFor(nameof(CanSendMail))]
+        //[NotifyPropertyChangedFor(nameof(CanSendMail))]
         private MailItemViewModel currentMailDraftItem;
 
         [ObservableProperty]
@@ -81,6 +81,12 @@ namespace Wino.Mail.ViewModels
         };
 
         private EditorToolbarSection selectedToolbarSection;
+        public MessageImportance SelectedMessageImportance;
+        public AttachmentCommand RemoveAttachmentCommand;
+        private Account ComposingAccount;
+        private MailDraftItem CurrentMailDraftItem;
+        private string Subject;
+        private bool IsImportanceSelected;
 
         public EditorToolbarSection SelectedToolbarSection
         {
@@ -163,9 +169,12 @@ namespace Wino.Mail.ViewModels
                 sentFolder = await _folderService.GetSpecialFolderByAccountIdAsync(assignedAccount.Id, SpecialFolderType.Sent);
             }
 
-            var draftSendPreparationRequest = new SendDraftPreparationRequest(CurrentMailDraftItem.MailCopy, currentMimeMessage, CurrentMailDraftItem.AssignedFolder, sentFolder, CurrentMailDraftItem.AssignedAccount.Preferences);
+            //TODO
 
-            await _worker.ExecuteAsync(draftSendPreparationRequest);
+            //var draftSendPreparationRequest = new SendDraftPreparationRequest(CurrentMailDraftItem.MailCopy, 
+            //    currentMimeMessage, CurrentMailDraftItem.AssignedFolder, sentFolder, CurrentMailDraftItem.AssignedAccount.Preferences);
+
+            //await _worker.ExecuteAsync(draftSendPreparationRequest);
         }
 
         private async Task UpdateMimeChangesAsync()
@@ -279,7 +288,8 @@ namespace Wino.Mail.ViewModels
             {
                 await LoadAccountsAsync();
 
-                CurrentMailDraftItem = mailItem;
+                //TODO
+                //CurrentMailDraftItem = mailItem;
 
                 _ = TryPrepareComposeAsync(true);
             }
@@ -348,7 +358,8 @@ namespace Wino.Mail.ViewModels
 
             await ExecuteUIThread(() =>
             {
-                ComposingAccount = Accounts.FirstOrDefault(a => a.Id == CurrentMailDraftItem.AssignedAccount.Id);
+                //TODO
+                ComposingAccount = default;//Accounts.FirstOrDefault(a => a.Id == CurrentMailDraftItem.AssignedAccount.Id);
             });
 
             return ComposingAccount != null;

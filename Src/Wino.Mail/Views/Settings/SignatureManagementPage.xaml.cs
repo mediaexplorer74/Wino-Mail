@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Web.WebView2.Core;
+//using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using Windows.UI.ViewManagement.Core;
 using Windows.UI.Xaml;
@@ -24,7 +24,8 @@ namespace Wino.Views.Settings
             set { SetValue(IsComposerDarkModeProperty, value); }
         }
 
-        public static readonly DependencyProperty IsComposerDarkModeProperty = DependencyProperty.Register(nameof(IsComposerDarkMode), typeof(bool), typeof(SignatureManagementPage), new PropertyMetadata(false, OnIsComposerDarkModeChanged));
+        public static readonly DependencyProperty IsComposerDarkModeProperty = DependencyProperty.Register(nameof(IsComposerDarkMode), 
+            typeof(bool), typeof(SignatureManagementPage), new PropertyMetadata(false, OnIsComposerDarkModeChanged));
 
         public SignatureManagementPage()
         {
@@ -241,7 +242,7 @@ namespace Wino.Views.Settings
             }
         }
 
-        private async void ChromiumInitialized(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs args)
+        private async void ChromiumInitialized(/*Microsoft.UI.Xaml.Controls.*/WebView2 sender, /*Microsoft.UI.Xaml.Controls.*/CoreWebView2InitializedEventArgs args)
         {
             var editorBundlePath = (await ViewModel.NativeAppService.GetQuillEditorBundlePathAsync()).Replace("full.html", string.Empty);
 

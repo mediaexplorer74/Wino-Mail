@@ -11,7 +11,7 @@ namespace Wino.Views
             InitializeComponent();
         }
 
-        private async void HyperlinkClicked(object sender, Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs e)
+        private async void HyperlinkClicked(object sender, /*Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs*/EventArgs e)
         {
             await Launcher.LaunchUriAsync(new System.Uri(e.Link));
         }

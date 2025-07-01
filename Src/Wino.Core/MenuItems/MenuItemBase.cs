@@ -16,6 +16,8 @@ namespace Wino.Core.MenuItems
         public IMenuItem ParentMenuItem { get; }
 
         public Guid? EntityId { get; }
+        public bool IsExpanded { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsSelected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public MenuItemBase(Guid? entityId = null, IMenuItem parentMenuItem = null)
         {
@@ -48,7 +50,10 @@ namespace Wino.Core.MenuItems
         [ObservableProperty]
         private T _parameter;
 
-        public MenuItemBase(T parameter, Guid? entityId, IMenuItem parentMenuItem = null) : base(entityId, parentMenuItem) => Parameter = parameter;
+        public MenuItemBase(T parameter, Guid? entityId, IMenuItem parentMenuItem = null) : base(entityId, parentMenuItem)
+        {
+            //Parameter = parameter;
+        }
     }
 
     public partial class MenuItemBase<TValue, TCollection> : MenuItemBase<TValue>

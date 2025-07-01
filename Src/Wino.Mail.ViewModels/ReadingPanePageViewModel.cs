@@ -34,6 +34,9 @@ namespace Wino.Mail.ViewModels
             }
         }
 
+        private ReaderFontModel CurrentReaderFont;
+        private int CurrentReaderFontSize;
+
         public List<ReaderFontModel> ReaderFonts => _fontService.GetReaderFonts();
 
         [ObservableProperty]

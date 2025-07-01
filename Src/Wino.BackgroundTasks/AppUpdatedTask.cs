@@ -26,7 +26,8 @@ namespace Wino.BackgroundTasks
             builder.AddText(Translator.Notifications_WinoUpdatedTitle);
             builder.AddText(string.Format(Translator.Notifications_WinoUpdatedMessage, versionText));
 
-            builder.Show();
+            //TODO
+            //builder.Show();
 
             def.Complete();
         }

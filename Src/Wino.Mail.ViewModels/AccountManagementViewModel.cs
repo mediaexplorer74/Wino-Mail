@@ -54,8 +54,10 @@ namespace Wino.Mail.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsAccountCreationAlmostOnLimit))]
-        [NotifyPropertyChangedFor(nameof(IsPurchasePanelVisible))]
+        //[NotifyPropertyChangedFor(nameof(IsPurchasePanelVisible))]
         private bool isAccountCreationBlocked;
+        private bool IsAccountCreationBlocked;
+        private bool HasUnlimitedAccountProduct;
 
         public AccountManagementViewModel(IDialogService dialogService,
                                           IWinoNavigationService navigationService,
@@ -280,7 +282,7 @@ namespace Wino.Mail.ViewModels
 
         private void PagePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(StartupAccount) && StartupAccount != null)
+            if (e.PropertyName == nameof(StartupAccount)/* && StartupAccount != null*/)
             {
                 _preferencesService.StartupEntityId = StartupAccount.StartupEntityId;
             }
@@ -301,7 +303,7 @@ namespace Wino.Mail.ViewModels
 
         private async Task InitializeAccountsAsync()
         {
-            StartupAccount = null;
+            //StartupAccount = null;
 
             Accounts.Clear();
 
@@ -339,7 +341,7 @@ namespace Wino.Mail.ViewModels
                 // Handle startup entity.
                 if (_preferencesService.StartupEntityId != null)
                 {
-                    StartupAccount = Accounts.FirstOrDefault(a => a.StartupEntityId == _preferencesService.StartupEntityId);
+                    //StartupAccount = Accounts.FirstOrDefault(a => a.StartupEntityId == _preferencesService.StartupEntityId);
                 }
             });
 

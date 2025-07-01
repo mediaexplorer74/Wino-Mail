@@ -29,7 +29,7 @@ namespace Wino.Activation
         private readonly IWinoRequestProcessor _winoRequestProcessor;
         private readonly IWinoSynchronizerFactory _winoSynchronizerFactory;
         private readonly IMailService _mailService;
-        private ToastArguments _toastArguments;
+        //private ToastArguments _toastArguments;
 
         BackgroundTaskDeferral _deferral;
         public BackgroundActivationHandler(IWinoRequestDelegator winoRequestDelegator,
@@ -64,8 +64,8 @@ namespace Wino.Activation
 
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                 {
-                    if (instance.TriggerDetails is ToastNotificationActionTriggerDetail toastNotificationActionTriggerDetail)
-                        _toastArguments = ToastArguments.Parse(toastNotificationActionTriggerDetail.Argument);
+                    //if (instance.TriggerDetails is ToastNotificationActionTriggerDetail toastNotificationActionTriggerDetail)
+                       // _toastArguments = ToastArguments.Parse(toastNotificationActionTriggerDetail.Argument);
                 });
 
                 // All toast activation mail actions are handled here like mark as read or delete.
@@ -74,8 +74,8 @@ namespace Wino.Activation
                 // Get the action and mail item id.
                 // Prepare package and send to delegator.
 
-                if (_toastArguments.TryGetValue(Constants.ToastMailItemIdKey, out string mailItemId) &&
-                    _toastArguments.TryGetValue(Constants.ToastActionKey, out MailOperation action))
+                /*if (_toastArguments.TryGetValue(Constants.ToastMailItemIdKey, out string mailItemId) &&
+                   // _toastArguments.TryGetValue(Constants.ToastActionKey, out MailOperation action))
                 {
                     // TODO: Remote folder id.
                     var mailItem = await _mailService.GetSingleMailItemAsync(mailItemId, string.Empty);
@@ -111,7 +111,7 @@ namespace Wino.Activation
 
                         await synchronizer.SynchronizeAsync(options);
                     }
-                }
+                }*/
             }
             else if (taskName == BackgroundTaskService.BackgroundSynchronizationTimerTaskNameEx)
             {

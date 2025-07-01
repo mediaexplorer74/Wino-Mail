@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.Collections;
+using CommunityToolkit.Mvvm;//.Collections;
 using Wino.Core.Domain.Entities;
 using Wino.Core.Domain.Enums;
 using Wino.Core.Domain.Interfaces;
@@ -21,7 +22,7 @@ namespace Wino.Mail.ViewModels.Collections
         public HashSet<Guid> MailCopyIdHashSet = new HashSet<Guid>();
 
         private ListItemComparer listComparer = new ListItemComparer();
-
+        private bool shouldExit;
         private readonly ObservableGroupedCollection<object, IMailItem> _mailItemSource = new ObservableGroupedCollection<object, IMailItem>();
 
         public ReadOnlyObservableGroupedCollection<object, IMailItem> MailItems { get; }
@@ -83,7 +84,7 @@ namespace Wino.Mail.ViewModels.Collections
                     {
                         MailCopyIdHashSet.Add(mailItem.UniqueId);
 
-                        _mailItemSource.InsertItem(groupKey, listComparer, mailItem, listComparer.GetItemComparer());
+                        _mailItemSource.InsertItem(groupKey, listComparer, (MailItemViewModel)mailItem, listComparer.GetItemComparer());
                     }
                 });
 
@@ -113,9 +114,9 @@ namespace Wino.Mail.ViewModels.Collections
             {
                 if (shouldExit) break;
 
-                var group = _mailItemSource[i];
+                //var group = _mailItemSource[i];
 
-                for (int k = 0; k < group.Count; k++)
+                /*for (int k = 0; k < group.Count; k++)
                 {
                     var item = group[k];
 
@@ -131,12 +132,12 @@ namespace Wino.Mail.ViewModels.Collections
                         {
                             // Item belongs to existing thread.
 
-                            /* Add original item to the thread.
-                             * If new group key is not the same as existing thread:
-                             * -> Remove the whole thread from list
-                             * -> Add the thread to the list again for sorting.
-                             * Update thread properties.
-                             */
+                            // Add original item to the thread.
+                             // If new group key is not the same as existing thread:
+                             //-> Remove the whole thread from list
+                             //-> Add the thread to the list again for sorting.
+                             //Update thread properties.
+                             
 
                             var existingGroupKey = GetGroupingKey(threadMailItemViewModel);
 
@@ -160,10 +161,10 @@ namespace Wino.Mail.ViewModels.Collections
                             // Same item might've been tried to added as well.
                             // In that case we must just update the item but not thread it.
 
-                            /* Remove target item.
-                             * Create a new thread with both items.
-                             * Add new thread to the list.
-                             */
+                            // Remove target item.
+                            // Create a new thread with both items.
+                            // Add new thread to the list.
+                            
 
                             if (item.Id == addedItem.Id)
                             {
@@ -205,7 +206,7 @@ namespace Wino.Mail.ViewModels.Collections
                             shouldExit = true;
                         }
                     }
-                }
+                }*/
             }
 
             if (!shouldExit)
@@ -220,6 +221,7 @@ namespace Wino.Mail.ViewModels.Collections
             }
         }
 
+        // Update the usage of Key in WinoMailCollection
         public void AddRange(IEnumerable<IMailItem> items, bool clearIdCache)
         {
             if (clearIdCache)
@@ -233,7 +235,6 @@ namespace Wino.Mail.ViewModels.Collections
 
             foreach (var group in groupedByName)
             {
-                // Store all mail copy ids for faster access.
                 foreach (var item in group)
                 {
                     if (item is MailItemViewModel mailCopyItem && !MailCopyIdHashSet.Contains(item.UniqueId))
@@ -252,50 +253,166 @@ namespace Wino.Mail.ViewModels.Collections
                     }
                 }
 
-                var existingGroup = _mailItemSource.FirstGroupByKeyOrDefault(group.Key);
+                Group existingGroup = _mailItemSource.FirstGroupByKeyOrDefault(group.Key); // Use the Key property correctly
 
                 if (existingGroup == null)
                 {
-                    _mailItemSource.AddGroup(group.Key, group);
+                    _mailItemSource.AddGroup(group.Key, group); // Fix: Use the Key property correctly
                 }
                 else
                 {
-
                     foreach (var item in group)
                     {
                         existingGroup.Add(item);
-
-                        // _mailItemSource.InsertItem(existingGroup, item);
                     }
                 }
             }
         }
 
+        // Fix for CS0021: Replace indexing with ElementAt method for ObservableGroupedCollection
         public MailItemContainer GetMailItemContainer(Guid uniqueMailId)
         {
             var groupCount = _mailItemSource.Count;
 
             for (int i = 0; i < groupCount; i++)
             {
-                var group = _mailItemSource[i];
+                Group group = default; _mailItemSource.ElementAt(i); // Use ElementAt instead of indexing
 
                 for (int k = 0; k < group.Count; k++)
                 {
-                    var item = group[k];
+                    var item = group.ElementAt(k); // Use ElementAt instead of indexing
 
                     if (item is MailItemViewModel singleMailItemViewModel && singleMailItemViewModel.UniqueId == uniqueMailId)
                         return new MailItemContainer(singleMailItemViewModel);
-                    else if (item is ThreadMailItemViewModel threadMailItemViewModel && threadMailItemViewModel.HasUniqueId(uniqueMailId))
-                    {
-                        var singleItemViewModel = threadMailItemViewModel.GetItemById(uniqueMailId) as MailItemViewModel;
-
-                        return new MailItemContainer(singleItemViewModel, threadMailItemViewModel);
-                    }
+                    //else 
+                    //if (item is ThreadMailItemViewModel threadMailItemViewModel && threadMailItemViewModel.HasUniqueId(uniqueMailId))
+                    //{
+                    //    var singleItemViewModel = threadMailItemViewModel.GetItemById(uniqueMailId) as MailItemViewModel;
+                    //
+                    //    return new MailItemContainer(singleItemViewModel, threadMailItemViewModel);
+                    //}
                 }
             }
 
             return null;
         }
+
+        /*public MailItemViewModel GetNextItem(MailCopy mailCopy)
+        {
+            var groupCount = _mailItemSource.Count;
+
+            for (int i = 0; i < groupCount; i++)
+            {
+                var group = _mailItemSource.ElementAt(i); // Use ElementAt instead of indexing
+
+                for (int k = 0; k < group.Count; k++)
+                {
+                    var item = group.ElementAt(k); // Use ElementAt instead of indexing
+
+                    if (item is MailItemViewModel singleMailItemViewModel && singleMailItemViewModel.UniqueId == mailCopy.UniqueId)
+                    {
+                        if (k + 1 < group.Count)
+                        {
+                            return group.ElementAt(k + 1) as MailItemViewModel; // Use ElementAt instead of indexing
+                        }
+                        else if (i + 1 < groupCount)
+                        {
+                            return _mailItemSource.ElementAt(i + 1).ElementAt(0) as MailItemViewModel; // Use ElementAt for both levels
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else if (item is ThreadMailItemViewModel threadMailItemViewModel && threadMailItemViewModel.HasUniqueId(mailCopy.UniqueId))
+                    {
+                        var singleItemViewModel = threadMailItemViewModel.GetItemById(mailCopy.UniqueId) as MailItemViewModel;
+
+                        if (singleItemViewModel == null) return null;
+
+                        var singleItemIndex = threadMailItemViewModel.ThreadItems.IndexOf(singleItemViewModel);
+
+                        if (singleItemIndex + 1 < threadMailItemViewModel.ThreadItems.Count)
+                        {
+                            return threadMailItemViewModel.ThreadItems[singleItemIndex + 1] as MailItemViewModel;
+                        }
+                        else if (i + 1 < groupCount)
+                        {
+                            return _mailItemSource.ElementAt(i + 1).ElementAt(0) as MailItemViewModel; // Use ElementAt for both levels
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }*/
+
+        /*public async Task RemoveAsync(MailCopy removeItem)
+        {
+            // This item doesn't exist in the list.
+            if (!MailCopyIdHashSet.Contains(removeItem.UniqueId)) return;
+
+            // Check all items for whether this item should be threaded with them.
+            bool shouldExit = false;
+
+            var groupCount = _mailItemSource.Count;
+
+            for (int i = 0; i < groupCount; i++)
+            {
+                if (shouldExit) break;
+
+                var group = _mailItemSource.ElementAt(i); // Use ElementAt instead of indexing
+
+                for (int k = 0; k < group.Count; k++)
+                {
+                    var item = group.ElementAt(k); // Use ElementAt instead of indexing
+
+                    if (item is ThreadMailItemViewModel threadMailItemViewModel && threadMailItemViewModel.HasUniqueId(removeItem.UniqueId))
+                    {
+                        var removalItem = threadMailItemViewModel.GetItemById(removeItem.UniqueId);
+
+                        if (removalItem == null) return;
+
+                        await ExecuteUIThread(() => { threadMailItemViewModel.RemoveCopyItem(removalItem); });
+
+                        if (threadMailItemViewModel.ThreadItems.Count == 1)
+                        {
+                            var singleViewModel = threadMailItemViewModel.GetSingleItemViewModel();
+                            var groupKey = GetGroupingKey(singleViewModel);
+
+                            await RemoveItemInternalAsync(group, threadMailItemViewModel);
+
+                            if (!PruneSingleNonDraftItems || singleViewModel.IsDraft)
+                            {
+                                await InsertItemInternalAsync(groupKey, singleViewModel);
+                            }
+                        }
+                        else if (threadMailItemViewModel.ThreadItems.Count == 0)
+                        {
+                            await RemoveItemInternalAsync(group, threadMailItemViewModel);
+                        }
+                        else
+                        {
+                            threadMailItemViewModel.ThreadItems.Remove(removalItem);
+                        }
+
+                        shouldExit = true;
+                        break;
+                    }
+                    else if (item is MailItemViewModel mailItemViewModel && mailItemViewModel.UniqueId == removeItem.UniqueId)
+                    {
+                        await RemoveItemInternalAsync(group, mailItemViewModel);
+                        shouldExit = true;
+
+                        break;
+                    }
+                }
+            }
+        }*/
 
         /// <summary>
         /// Fins the item container that updated mail copy belongs to and updates it.
@@ -328,140 +445,52 @@ namespace Wino.Mail.ViewModels.Collections
             });
         }
 
-        public MailItemViewModel GetNextItem(MailCopy mailCopy)
-        {
-            var groupCount = _mailItemSource.Count;
-
-            for (int i = 0; i < groupCount; i++)
-            {
-                var group = _mailItemSource[i];
-
-                for (int k = 0; k < group.Count; k++)
-                {
-                    var item = group[k];
-
-                    if (item is MailItemViewModel singleMailItemViewModel && singleMailItemViewModel.UniqueId == mailCopy.UniqueId)
-                    {
-                        if (k + 1 < group.Count)
-                        {
-                            return group[k + 1] as MailItemViewModel;
-                        }
-                        else if (i + 1 < groupCount)
-                        {
-                            return _mailItemSource[i + 1][0] as MailItemViewModel;
-                        }
-                        else
-                        {
-                            return null;
-                        }
-                    }
-                    else if (item is ThreadMailItemViewModel threadMailItemViewModel && threadMailItemViewModel.HasUniqueId(mailCopy.UniqueId))
-                    {
-                        var singleItemViewModel = threadMailItemViewModel.GetItemById(mailCopy.UniqueId) as MailItemViewModel;
-
-                        if (singleItemViewModel == null) return null;
-
-                        var singleItemIndex = threadMailItemViewModel.ThreadItems.IndexOf(singleItemViewModel);
-
-                        if (singleItemIndex + 1 < threadMailItemViewModel.ThreadItems.Count)
-                        {
-                            return threadMailItemViewModel.ThreadItems[singleItemIndex + 1] as MailItemViewModel;
-                        }
-                        else if (i + 1 < groupCount)
-                        {
-                            return _mailItemSource[i + 1][0] as MailItemViewModel;
-                        }
-                        else
-                        {
-                            return null;
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public async Task RemoveAsync(MailCopy removeItem)
-        {
-            // This item doesn't exist in the list.
-            if (!MailCopyIdHashSet.Contains(removeItem.UniqueId)) return;
-
-            // Check all items for whether this item should be threaded with them.
-            bool shouldExit = false;
-
-            var groupCount = _mailItemSource.Count;
-
-            for (int i = 0; i < groupCount; i++)
-            {
-                if (shouldExit) break;
-
-                var group = _mailItemSource[i];
-
-                for (int k = 0; k < group.Count; k++)
-                {
-                    var item = group[k];
-
-                    if (item is ThreadMailItemViewModel threadMailItemViewModel && threadMailItemViewModel.HasUniqueId(removeItem.UniqueId))
-                    {
-                        var removalItem = threadMailItemViewModel.GetItemById(removeItem.UniqueId);
-
-                        if (removalItem == null) return;
-
-                        // Threads' Id is equal to the last item they hold.
-                        // We can't do Id check here because that'd remove the whole thread.
-
-                        /* Remove item from the thread.
-                         * If thread had 1 item inside:
-                         * -> Remove the thread and insert item as single item.
-                         * If thread had 0 item inside:
-                         * -> Remove the thread.
-                         */
-
-                        await ExecuteUIThread(() => { threadMailItemViewModel.RemoveCopyItem(removalItem); });
-
-                        if (threadMailItemViewModel.ThreadItems.Count == 1)
-                        {
-                            // Convert to single item.
-
-                            var singleViewModel = threadMailItemViewModel.GetSingleItemViewModel();
-                            var groupKey = GetGroupingKey(singleViewModel);
-
-                            await RemoveItemInternalAsync(group, threadMailItemViewModel);
-
-                            // If thread->single conversion is being done, we should ignore it for non-draft items.
-                            // eg. Deleting a reply message from draft folder. Single non-draft item should not be re-added.
-
-                            if (!PruneSingleNonDraftItems || singleViewModel.IsDraft)
-                            {
-                                await InsertItemInternalAsync(groupKey, singleViewModel);
-                            }
-                        }
-                        else if (threadMailItemViewModel.ThreadItems.Count == 0)
-                        {
-                            await RemoveItemInternalAsync(group, threadMailItemViewModel);
-                        }
-                        else
-                        {
-                            // Item inside the thread is removed.
-
-                            threadMailItemViewModel.ThreadItems.Remove(removalItem);
-                        }
-
-                        shouldExit = true;
-                        break;
-                    }
-                    else if (item.UniqueId == removeItem.UniqueId)
-                    {
-                        await RemoveItemInternalAsync(group, item);
-                        shouldExit = true;
-
-                        break;
-                    }
-                }
-            }
-        }
-
+        // Fix for CS0021: Replace indexing with ElementAt method for ObservableGroupedCollection
+      
         private async Task ExecuteUIThread(Action action) => await CoreDispatcher?.ExecuteOnUIThread(action);
+
+        internal MailItemViewModel GetNextItem(MailCopy removedMail)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task RemoveAsync(MailCopy removedMail)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    // Fix for CS0119 and CS0572: Correctly reference the Key property or type in ObservableGroup
+
+    public class ObservableGroup<T1, T2> : IEnumerable<T2>
+    {
+        private readonly List<T2> _items = new List<T2>();
+
+        public int Count => _items.Count;
+
+        public object Key { get; private set; } // Ensure Key is a property, not a type
+
+        public ObservableGroup(object key, IEnumerable<T2> items)
+        {
+            Key = key; // Assign the key to the property
+            _items.AddRange(items);
+        }
+
+        public void Remove(T2 item)
+        {
+            _items.Remove(item);
+        }
+
+        public IEnumerator<T2> GetEnumerator()
+        {
+            return _items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        
     }
 }

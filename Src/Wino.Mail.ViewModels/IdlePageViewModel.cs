@@ -11,8 +11,9 @@ namespace Wino.Mail.ViewModels
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(HasSelectedItems))]
-        [NotifyPropertyChangedFor(nameof(SelectedMessageText))]
+        //[NotifyPropertyChangedFor(nameof(SelectedMessageText))]
         private int selectedItemCount;
+        private int SelectedItemCount;
 
         public bool HasSelectedItems => SelectedItemCount > 0;
 

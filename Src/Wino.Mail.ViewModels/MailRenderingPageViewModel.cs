@@ -255,6 +255,14 @@ namespace Wino.Mail.ViewModels
         }
 
         private CancellationTokenSource renderCancellationTokenSource = new CancellationTokenSource();
+        public Command OpenAttachmentCommand;
+        private bool IsIndetermineProgress;
+        private double CurrentDownloadPercentage;
+        private MailRenderModel? CurrentRenderModel;
+        private string Subject;
+        private string FromAddress;
+        private string FromName;
+        private DateTime CreationDate;
 
         public override async void OnNavigatedTo(NavigationMode mode, object parameters)
         {

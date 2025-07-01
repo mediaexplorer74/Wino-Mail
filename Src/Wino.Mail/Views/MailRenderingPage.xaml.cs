@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.Web.WebView2.Core;
+//using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json;
 using Windows.System;
 using Windows.UI.Xaml;
@@ -18,6 +18,7 @@ using Wino.Core.Messages.Mails;
 using Wino.Core.Messages.Shell;
 using Wino.Mail.ViewModels.Data;
 using Wino.Views.Abstract;
+using Wino.Views.Settings;
 
 namespace Wino.Views
 {

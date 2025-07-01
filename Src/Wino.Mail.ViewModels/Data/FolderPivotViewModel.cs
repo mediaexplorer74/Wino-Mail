@@ -22,6 +22,9 @@ namespace Wino.Mail.ViewModels.Data
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(ShouldDisplaySelectedItemCount))]
         private bool isExtendedMode = true;
+        public bool IsExtendedMode;
+        internal int SelectedItemCount;
+        public bool IsSelected;
 
         public FolderPivotViewModel(string folderName, bool? isFocused)
         {

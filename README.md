@@ -14,7 +14,7 @@ My little RnD of Burak Kaan Köse's [AllInOneApp](https://github.com/bkaankose/W
 
 ## TODO
 - Explore more things about Microsoft Graph "framework" / api
-- Try to organise Win SDK 16299 "project compatibility" 
+- Try to organize Win SDK 16299 "project compatibility" 
 
 ## References
  - Repo URL (original project): https://github.com/bkaankose/Wino-Mail

@@ -94,8 +94,8 @@ namespace Wino.Mail.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsEmpty))]
-        [NotifyPropertyChangedFor(nameof(IsCriteriaFailed))]
-        [NotifyPropertyChangedFor(nameof(IsFolderEmpty))]
+        //[NotifyPropertyChangedFor(nameof(IsCriteriaFailed))]
+        //[NotifyPropertyChangedFor(nameof(IsFolderEmpty))]
         private bool isInitializingFolder;
 
         [ObservableProperty]
@@ -136,7 +136,8 @@ namespace Wino.Mail.ViewModels
             _winoRequestDelegator = winoRequestDelegator;
             _keyPressService = keyPressService;
 
-            SelectedFilterOption = FilterOptions[0];
+            //TODO
+            //SelectedFilterOption = FilterOptions[0];
             SelectedSortingOption = SortingOptions[0];
 
             selectionChangedObservable = Observable.FromEventPattern<NotifyCollectionChangedEventArgs>(SelectedItems, nameof(SelectedItems.CollectionChanged));
@@ -181,7 +182,7 @@ namespace Wino.Mail.ViewModels
             trackingSynchronizationId = Guid.NewGuid();
             completedTrackingSynchronizationCount = 0;
 
-            foreach (var folder in ActiveFolder.HandlingFolders)
+            foreach (Folder folder in ActiveFolder.HandlingFolders)
             {
                 var options = new SynchronizationOptions()
                 {
@@ -272,7 +273,7 @@ namespace Wino.Mail.ViewModels
         /// </summary>
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(CanSynchronize))]
-        [NotifyPropertyChangedFor(nameof(IsFolderSynchronizationEnabled))]
+        //[NotifyPropertyChangedFor(nameof(IsFolderSynchronizationEnabled))]
         private IBaseFolderMenuItem activeFolder;
 
         [ObservableProperty]
@@ -294,6 +295,17 @@ namespace Wino.Mail.ViewModels
         public bool IsFolderEmpty => !IsInitializingFolder && IsEmpty && !IsInSearchMode;
 
         private bool _isPerformingSearch;
+        public Command SyncFolderCommand;
+        private ActiveFolder ActiveFolder;
+        public Command SelectedPivotChangedCommand;
+        private bool IsInitializingFolder;
+        private bool IsAccountSynchronizerInSynchronization;
+        private string SearchQuery;
+        private InfoBarMessageType BarSeverity;
+        private string BarTitle;
+        private string BarMessage;
+        private bool IsBarOpen;
+        private FilterOption SelectedFilterOption;
 
         public bool IsPerformingSearch
         {
@@ -410,6 +422,16 @@ namespace Wino.Mail.ViewModels
 
                 bool isAccountSupportsFocusedInbox = parentAccount.Preferences.IsFocusedInboxEnabled != null;
                 bool isFocusedInboxEnabled = isAccountSupportsFocusedInbox && parentAccount.Preferences.IsFocusedInboxEnabled.GetValueOrDefault();
+                // Fix for CS1061: Ensure ActiveFolder is cast to the appropriate type that contains the SpecialFolderType property.
+
+                if (ActiveFolder is IBaseFolderMenuItem baseFolderMenuItem)
+                {
+                    bool isInboxFolder1 = baseFolderMenuItem.SpecialFolderType == SpecialFolderType.Inbox;
+                }
+                else
+                {
+                    // Handle cases where ActiveFolder is not of type IBaseFolderMenuItem, if necessary.
+                }
                 bool isInboxFolder = ActiveFolder.SpecialFolderType == SpecialFolderType.Inbox;
 
                 // Folder supports Focused - Other
@@ -637,7 +659,8 @@ namespace Wino.Mail.ViewModels
 
             await ExecuteUIThread(() => { IsInitializingFolder = true; });
 
-            var initializationOptions = new MailListInitializationOptions(ActiveFolder.HandlingFolders,
+            //TODO
+            MailListInitializationOptions initializationOptions = new MailListInitializationOptions(/*ActiveFolder.HandlingFolders*/default,
                                                                           SelectedFilterOption.Type,
                                                                           SelectedSortingOption.Type,
                                                                           PreferencesService.IsThreadingEnabled,
@@ -701,7 +724,8 @@ namespace Wino.Mail.ViewModels
 
                 // Here items are sorted and filtered.
 
-                var initializationOptions = new MailListInitializationOptions(ActiveFolder.HandlingFolders,
+                //TODO
+                var initializationOptions = new MailListInitializationOptions(/*ActiveFolder.HandlingFolders*/default,
                                                                               SelectedFilterOption.Type,
                                                                               SelectedSortingOption.Type,
                                                                               PreferencesService.IsThreadingEnabled,
@@ -800,7 +824,7 @@ namespace Wino.Mail.ViewModels
         {
             isChangingFolder = true;
 
-            ActiveFolder = message.BaseFolderMenuItem;
+            ActiveFolder = default;//message.BaseFolderMenuItem;
 
             trackingSynchronizationId = null;
             completedTrackingSynchronizationCount = 0;

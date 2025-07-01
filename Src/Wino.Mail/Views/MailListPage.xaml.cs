@@ -309,7 +309,7 @@ namespace Wino.Views
 
         private void PrepareComposePageWebViewTransition()
         {
-            var webView = GetComposerPageWebView();
+            WebView2 webView = GetComposerPageWebView();
 
             if (webView != null)
             {
@@ -444,7 +444,8 @@ namespace Wino.Views
             {
                 args.Handled = true;
 
-                ViewModel?.MailOperationCommand?.Execute((int)MailOperation.SoftDelete);
+                //TODO
+                //ViewModel?.MailOperationCommand?.Execute((int)MailOperation.SoftDelete);
             }
         }
 

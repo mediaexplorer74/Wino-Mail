@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
-using CommunityToolkit.WinUI;
+using CommunityToolkit.Common;//.WinUI;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml;

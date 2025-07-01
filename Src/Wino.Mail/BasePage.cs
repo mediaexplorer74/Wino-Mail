@@ -31,6 +31,7 @@ namespace Wino
 
     public abstract class BasePage<T> : BasePage where T : BaseViewModel
     {
+        
         public T ViewModel { get; } = App.Current.Services.GetService<T>();
 
         protected BasePage()

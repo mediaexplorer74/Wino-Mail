@@ -7,11 +7,11 @@ using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.WinUI.Controls;
+using CommunityToolkit;//.WinUI.Controls;
 using EmailValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.Web.WebView2.Core;
+//using Microsoft.Web.WebView2.Core;
 using MimeKit;
 using Newtonsoft.Json;
 using Windows.Foundation;
@@ -69,29 +69,29 @@ namespace Wino.Views
 
         private IDisposable GetSuggestionBoxDisposable(TokenizingTextBox box)
         {
-            return Observable.FromEventPattern<TypedEventHandler<AutoSuggestBox, AutoSuggestBoxTextChangedEventArgs>, AutoSuggestBoxTextChangedEventArgs>(
-                x => box.TextChanged += x,
-                x => box.TextChanged -= x)
-                    .Throttle(TimeSpan.FromMilliseconds(120))
-                    .ObserveOn(SynchronizationContext.Current)
-                    .Subscribe(t =>
+            return Observable.FromEventPattern<EventHandler<AutoSuggestBoxTextChangedEventArgs>, AutoSuggestBoxTextChangedEventArgs>(
+                handler => box.TextChanged += handler,
+                handler => box.TextChanged -= handler)
+                .Throttle(TimeSpan.FromMilliseconds(120))
+                .ObserveOn(SynchronizationContext.Current)
+                .Subscribe(t =>
+                {
+                    if (t.EventArgs.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
                     {
-                        if (t.EventArgs.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+                        if (t.Sender is AutoSuggestBox senderBox && senderBox.Text.Length >= 3)
                         {
-                            if (t.Sender is AutoSuggestBox senderBox && senderBox.Text.Length >= 3)
+                            _ = ViewModel.ContactService.GetAddressInformationAsync(senderBox.Text).ContinueWith(x =>
                             {
-                                _ = ViewModel.ContactService.GetAddressInformationAsync(senderBox.Text).ContinueWith(x =>
+                                _ = ViewModel.ExecuteUIThread(() =>
                                 {
-                                    _ = ViewModel.ExecuteUIThread(() =>
-                                    {
-                                        var addresses = x.Result;
+                                    var addresses = x.Result;
 
-                                        senderBox.ItemsSource = addresses;
-                                    });
+                                    senderBox.ItemsSource = addresses;
                                 });
-                            }
+                            });
                         }
-                    });
+                    }
+                });
         }
 
         private async void AddFilesClicked(object sender, RoutedEventArgs e)
@@ -336,11 +336,11 @@ namespace Wino.Views
             IsComposerDarkMode = underlyingThemeService.IsUnderlyingThemeDark();
         }
 
-        private async void ChromiumInitialized(Microsoft.UI.Xaml.Controls.WebView2 sender, Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs args)
+        private async void ChromiumInitialized(WebView2 sender, /*Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs*/EventArgs args)
         {
             var editorBundlePath = (await ViewModel.NativeAppService.GetQuillEditorBundlePathAsync()).Replace("full.html", string.Empty);
 
-            Chromium.CoreWebView2.SetVirtualHostNameToFolderMapping("app.example", editorBundlePath, CoreWebView2HostResourceAccessKind.Allow);
+            Chromium.CoreWebView2.SetVirtualHostNameToFolderMapping("app.example", editorBundlePath, /*CoreWebView2HostResourceAccessKind.Allow*/default);
             Chromium.Source = new Uri("https://app.example/full.html");
 
             Chromium.CoreWebView2.DOMContentLoaded -= DOMLoaded;
@@ -396,7 +396,10 @@ namespace Wino.Views
             }
         }
 
-        private void DOMLoaded(CoreWebView2 sender, CoreWebView2DOMContentLoadedEventArgs args) => DOMLoadedTask.TrySetResult(true);
+        private void DOMLoaded(CoreWebView2 sender, CoreWebView2DOMContentLoadedEventArgs args)
+        {
+            DOMLoadedTask.TrySetResult(true);
+        }
 
         void IRecipient<NavigationPaneModeChanged>.Receive(NavigationPaneModeChanged message)
         {

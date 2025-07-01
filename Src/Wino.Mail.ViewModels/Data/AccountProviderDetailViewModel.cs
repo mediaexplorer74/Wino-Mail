@@ -10,6 +10,7 @@ namespace Wino.Mail.ViewModels.Data
 
         [ObservableProperty]
         private MailAccount account;
+        internal Account Account;
 
         public IProviderDetail ProviderDetail { get; set; }
 
@@ -20,7 +21,7 @@ namespace Wino.Mail.ViewModels.Data
         public AccountProviderDetailViewModel(IProviderDetail providerDetail, MailAccount account)
         {
             ProviderDetail = providerDetail;
-            Account = account;
+            //Account = account;
         }
     }
 }

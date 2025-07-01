@@ -25,6 +25,7 @@ namespace Wino.Core.MenuItems
         public Guid AccountId => Parameter.Id;
 
         private AccountAttentionReason attentionReason;
+        internal MailAccount Parameter;
 
         public AccountAttentionReason AttentionReason
         {
@@ -43,10 +44,13 @@ namespace Wino.Core.MenuItems
         public string AccountName
         {
             get => Parameter.Name;
-            set => SetProperty(Parameter.Name, value, Parameter, (u, n) => u.Name = n);
+            set => SetProperty(ref Parameter.Name, value, /*Parameter*/default, /*(u, n) => u.Name = n*/default);
         }
 
-        public IEnumerable<MailAccount> HoldingAccounts => new List<MailAccount> { Parameter };
+        public IEnumerable<MailAccount> HoldingAccounts => new List<MailAccount> { /*Parameter*/default };
+
+        public double SynchronizationProgress { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int UnreadItemCount { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public AccountMenuItem(MailAccount account, IMenuItem parent = null) : base(account, account.Id, parent)
         {
@@ -55,7 +59,7 @@ namespace Wino.Core.MenuItems
 
         public void UpdateAccount(MailAccount account)
         {
-            Parameter = account;
+            //Parameter = account;
             AccountName = account.Name;
             AttentionReason = account.AttentionReason;
         }
@@ -65,7 +69,7 @@ namespace Wino.Core.MenuItems
             if (AttentionReason != AccountAttentionReason.None && !SubMenuItems.Any(a => a is FixAccountIssuesMenuItem))
             {
                 // Add fix issue item if not exists.
-                SubMenuItems.Insert(0, new FixAccountIssuesMenuItem(Parameter, this));
+                SubMenuItems.Insert(0, new FixAccountIssuesMenuItem(/*Parameter*/default, this));
             }
             else
             {

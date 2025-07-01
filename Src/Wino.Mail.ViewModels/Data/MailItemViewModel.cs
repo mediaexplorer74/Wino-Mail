@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Wino.Core.Domain;
 using Wino.Core.Domain.Entities;
@@ -30,6 +31,8 @@ namespace Wino.Mail.ViewModels.Data
 
         [ObservableProperty]
         private bool isSelected;
+        public bool IsCustomFocused;
+        public List<ThreadItems> ThreadItems;
 
         public bool IsFlagged
         {
@@ -101,6 +104,16 @@ namespace Wino.Mail.ViewModels.Data
             OnPropertyChanged(nameof(Subject));
             OnPropertyChanged(nameof(PreviewText));
             OnPropertyChanged(nameof(IsLocalDraft));
+        }
+
+        internal bool HasUniqueId(Guid uniqueId)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal MailItemViewModel GetItemById(Guid uniqueId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

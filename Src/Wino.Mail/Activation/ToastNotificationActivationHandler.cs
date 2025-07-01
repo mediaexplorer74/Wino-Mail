@@ -21,7 +21,7 @@ namespace Wino.Activation
         private readonly IMailService _mailService;
         private readonly IFolderService _folderService;
 
-        private ToastArguments _toastArguments;
+        //private ToastArguments _toastArguments;
 
         public ToastNotificationActivationHandler(INativeAppService nativeAppService,
                                                   IMailService mailService,
@@ -39,7 +39,7 @@ namespace Wino.Activation
             // Otherwise we'll save it and handle it when the shell loads all accounts.
 
             // Parse the mail unique id and perform above actions.
-            if (Guid.TryParse(_toastArguments[Constants.ToastMailItemIdKey], out Guid mailItemUniqueId))
+            /*if (Guid.TryParse(_toastArguments[Constants.ToastMailItemIdKey], out Guid mailItemUniqueId))
             {
                 var account = await _mailService.GetMailAccountByUniqueIdAsync(mailItemUniqueId).ConfigureAwait(false);
                 if (account == null) return;
@@ -55,12 +55,12 @@ namespace Wino.Activation
 
                 // Send the messsage anyways. Launch protocol service will be ignored if the message is picked up by subscriber shell.
                 WeakReferenceMessenger.Default.Send(message);
-            }
+            }*/
         }
 
         protected override bool CanHandleInternal(ToastNotificationActivatedEventArgs args)
         {
-            try
+            /*try
             {
                 _toastArguments = ToastArguments.Parse(args.Argument);
 
@@ -71,7 +71,7 @@ namespace Wino.Activation
             catch (Exception ex)
             {
                 Log.Error(ex, "Couldn't handle parsing toast notification arguments for foreground navigate.");
-            }
+            }*/
 
             return false;
         }

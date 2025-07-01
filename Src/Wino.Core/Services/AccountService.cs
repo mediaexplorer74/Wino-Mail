@@ -41,7 +41,7 @@ namespace Wino.Core.Services
         {
             var account = await GetAccountAsync(accountId);
 
-            Guard.IsNotNull(account);
+            //Guard.IsNotNull(account);
 
             account.AttentionReason = AccountAttentionReason.None;
 
@@ -207,7 +207,7 @@ namespace Wino.Core.Services
             // This will re-generate token.
             var token = await authenticator.GenerateTokenAsync(account, true);
 
-            Guard.IsNotNull(token);
+           // Guard.IsNotNull(token);
         }
 
         private Task<MailAccountPreferences> GetAccountPreferencesAsync(Guid accountId)
@@ -327,7 +327,7 @@ namespace Wino.Core.Services
 
         public async Task CreateAccountAsync(MailAccount account, TokenInformation tokenInformation, CustomServerInformation customServerInformation)
         {
-            Guard.IsNotNull(account);
+            //Guard.IsNotNull(account);
 
             var accountCount = await Connection.Table<MailAccount>().CountAsync();
 
